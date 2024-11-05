@@ -1,9 +1,10 @@
 import "./App.css";
+import RoutesConfig from "./routes";
 
 function App() {
   return (
     <>
-      <h1>Trabalhando com Rotas no React</h1>
+      <RoutesConfig />
     </>
   );
 }
