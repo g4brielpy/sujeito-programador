@@ -21,8 +21,9 @@ export default function Home() {
         setFilmes(response.data.results);
       } catch (e) {
         console.log("Erro:" + e);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
 
     fetchAPI();
