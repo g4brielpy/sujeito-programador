@@ -23,7 +23,6 @@ export default function Home() {
     }
 
     fetchAPI();
-    console.log(filmes);
   }, []);
 
   return (
@@ -42,6 +41,7 @@ export default function Home() {
             return (
               <FilmeCard
                 key={filme.id}
+                id={filme.id}
                 title={filme.title}
                 image={`https://image.tmdb.org/t/p/w500/${filme.poster_path}`}
               />

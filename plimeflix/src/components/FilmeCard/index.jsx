@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export function FilmeCard({ title, image }) {
+export function FilmeCard({ id, title, image }) {
   return (
     <article>
       <h3 className="mb-1 text-xl md:text-2xl lg:text-3xl">{title}</h3>
@@ -19,7 +19,7 @@ export function FilmeCard({ title, image }) {
         text-lg lg:text-xl text-center
         hover:opacity-85 transition-opacity
         "
-        to={"/"}
+        to={`/filme/${id}`}
       >
         Acessar
       </Link>
