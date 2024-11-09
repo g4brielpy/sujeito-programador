@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { API } from "../../utils/api";
-import { Link } from "react-router-dom";
+
 import { FilmeCard } from "../../components/FilmeCard";
+import Loading from "./loading";
 
 export default function Home() {
   const [filmes, setFilmes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchAPI() {
@@ -20,35 +22,40 @@ export default function Home() {
       } catch (e) {
         console.log("Erro:" + e);
       }
+      setLoading(false);
     }
 
     fetchAPI();
-  }, []);
+  }, [filmes]);
 
-  return (
-    <main>
-      <div className="container py-12">
-        <h1
-          className="
+  if (loading) {
+    return <Loading />;
+  } else {
+    return (
+      <main>
+        <div className="container py-12">
+          <h1
+            className="
           font-bold text-center 
           text-2xl md:text-3xl lg:text-4xl"
-        >
-          Filmes cartaz nos cinemas
-        </h1>
+          >
+            Filmes cartaz nos cinemas
+          </h1>
 
-        <section className="mt-10 flex flex-col items-center gap-12">
-          {filmes.map((filme) => {
-            return (
-              <FilmeCard
-                key={filme.id}
-                id={filme.id}
-                title={filme.title}
-                image={`https://image.tmdb.org/t/p/w500/${filme.poster_path}`}
-              />
-            );
-          })}
-        </section>
-      </div>
-    </main>
-  );
+          <section className="mt-10 flex flex-col items-center gap-12">
+            {filmes.map((filme) => {
+              return (
+                <FilmeCard
+                  key={filme.id}
+                  id={filme.id}
+                  title={filme.title}
+                  image={`https://image.tmdb.org/t/p/w500/${filme.poster_path}`}
+                />
+              );
+            })}
+          </section>
+        </div>
+      </main>
+    );
+  }
 }
