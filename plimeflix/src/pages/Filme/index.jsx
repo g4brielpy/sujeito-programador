@@ -59,7 +59,12 @@ export default function Filme() {
           </div>
           <nav className="mt-12 flex justify-around flex-wrap">
             <ButtonLink href={"/"}>Voltar</ButtonLink>
-            <ButtonA href={"https"}>Ver treile</ButtonA>
+            <ButtonA
+              target="_blank"
+              href={`https://www.youtube.com/results?search_query=${filme.title}`}
+            >
+              Ver Trailer
+            </ButtonA>
           </nav>
         </div>
       </article>
