@@ -1,11 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { ButtonLink, ButtonA } from "../../components/IU/Button";
 import { API } from "../../utils/api";
 
 export default function Filme() {
   const { id } = useParams();
+
   const [filme, setFilme] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchFilme() {
@@ -19,11 +21,12 @@ export default function Filme() {
         setFilme(responde.data);
       } catch (e) {
         console.log("Error: " + e);
+      } finally {
+        setLoading(false);
       }
     }
 
     fetchFilme();
-    console.log(filme);
   }, []);
 
   return (
@@ -45,8 +48,12 @@ export default function Filme() {
           <h2 className="text-xl md:text-2xl lg:text-3xl mb-6 font-bold">
             Sinopse
           </h2>
-          <p className="md:text-lg lg:text-xl">{filme.overview}</p>
+          <p className="md:text-lg lg:text-xl text-justify">{filme.overview}</p>
         </div>
+        <nav className="mt-12 flex justify-around flex-wrap">
+          <ButtonLink href={"/"}>Voltar</ButtonLink>
+          <ButtonA href={"https"}>Ver treile</ButtonA>
+        </nav>
       </div>
     </article>
   );
