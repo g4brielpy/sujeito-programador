@@ -3,6 +3,7 @@ import RootLayout from "./layout/Root";
 
 import Home from "./pages/home";
 import Filme from "./pages/Filme";
+import Error from "./pages/Error";
 
 export default function RoutesConfig() {
   return (
@@ -10,8 +11,9 @@ export default function RoutesConfig() {
       <BrowserRouter>
         <RootLayout>
           <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/filme/:id" element={<Filme />}></Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/filme/:id" element={<Filme />} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </RootLayout>
       </BrowserRouter>
