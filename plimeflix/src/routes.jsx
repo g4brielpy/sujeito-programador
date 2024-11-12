@@ -4,6 +4,7 @@ import RootLayout from "./layout/Root";
 import Home from "./pages/home";
 import Filme from "./pages/Filme";
 import Error from "./pages/Error";
+import Favoritos from "./pages/Favoritos";
 
 export default function RoutesConfig() {
   return (
@@ -13,6 +14,7 @@ export default function RoutesConfig() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/filme/:id" element={<Filme />} />
+            <Route path="/favoritos" element={<Favoritos />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </RootLayout>
