@@ -31,6 +31,14 @@ export default function Filme() {
     fetchFilme();
   }, []);
 
+  function saveMovie(id) {
+    const filmesStorage =
+      JSON.parse(localStorage.getItem("@filmesFavoritos")) || [];
+    filmesStorage.push(filme);
+
+    localStorage.setItem("@filmesFavoritos", JSON.stringify(filmesStorage));
+  }
+
   if (loading) {
     return <Loading />;
   } else {
@@ -58,7 +66,12 @@ export default function Filme() {
             </p>
           </div>
           <nav className="mt-12 flex justify-around flex-wrap">
-            <ButtonLink href={"/"}>Voltar</ButtonLink>
+            <button
+              onClick={() => saveMovie(id)}
+              className="px-6 py-2 bg-red-900 text-white rounded-sm"
+            >
+              Salvar
+            </button>
             <ButtonA
               target="_blank"
               href={`https://www.youtube.com/results?search_query=${filme.title}`}
