@@ -52,7 +52,10 @@ export default function Favoritos() {
               >
                 <h2 className="text-xl">{filme.title}</h2>
                 <div className="flex gap-4 md:gap-8">
-                  <Link className="bg-black text-white px-2 py-2 rounded-md">
+                  <Link
+                    to={`/filme/${filme.id}`}
+                    className="bg-black text-white px-2 py-2 rounded-md"
+                  >
                     Detalhes
                   </Link>
                   <button className="bg-red-900 text-white px-2 py-2 rounded-md">
