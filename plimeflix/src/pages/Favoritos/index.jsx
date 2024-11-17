@@ -9,7 +9,6 @@ export default function Favoritos() {
 
     if (filmesStorage) {
       setFilmesFavoritos(filmesStorage);
-      console.log(filmesFavoritos);
     }
   }, []);
 
@@ -31,7 +30,7 @@ export default function Favoritos() {
   }
 
   return (
-    <main className="container py-12">
+    <main className="container py-12 min-h-[90vh]">
       <h1
         className="
           font-bold text-center mb-8
