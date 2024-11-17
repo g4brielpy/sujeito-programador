@@ -2,8 +2,19 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer>
-      <h1>Footer</h1>
+    <footer className="bg-black text-white text-center p-4">
+      <p>
+        &copy; Desenvolvido por{" "}
+        <a
+          href="http://"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-bold hover:underline"
+        >
+          Gabriel Iuri{" "}
+        </a>
+        - 2024
+      </p>
     </footer>
   );
 }
