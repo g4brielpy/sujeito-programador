@@ -12,6 +12,13 @@ export default function Favoritos() {
     }
   }, []);
 
+  function deletarFilme(id) {
+    const filmesAtualizados = filmesFavoritos.filter((filme) => filme.id != id);
+
+    setFilmesFavoritos(filmesAtualizados);
+    localStorage.setItem("@filmesFavoritos", JSON.stringify(filmesAtualizados));
+  }
+
   if (!filmesFavoritos) {
     return (
       <main className="container py-12">
@@ -58,7 +65,10 @@ export default function Favoritos() {
                   >
                     Detalhes
                   </Link>
-                  <button className="bg-red-900 text-white px-2 py-2 rounded-md">
+                  <button
+                    onClick={() => deletarFilme(filme.id)}
+                    className="bg-red-900 text-white px-2 py-2 rounded-md"
+                  >
                     Excluir
                   </button>
                 </div>
