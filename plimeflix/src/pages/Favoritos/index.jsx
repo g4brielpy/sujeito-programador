@@ -19,7 +19,7 @@ export default function Favoritos() {
     localStorage.setItem("@filmesFavoritos", JSON.stringify(filmesAtualizados));
   }
 
-  if (!filmesFavoritos) {
+  if (!filmesFavoritos.length) {
     return (
       <main className="container py-12">
         {filmesFavoritos && (
