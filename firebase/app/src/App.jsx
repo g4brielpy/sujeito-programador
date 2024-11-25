@@ -5,6 +5,7 @@ import {
   addDoc,
   getDocs,
   updateDoc,
+  deleteDoc,
   doc,
 } from "firebase/firestore";
 import { db } from "./utils/firebaseConnection";
@@ -59,6 +60,18 @@ function App() {
     }
   }
 
+  async function handleDel() {
+    try {
+      const docRef = doc(db, "posts", postId);
+      await deleteDoc(docRef);
+
+      setPostId("");
+      alert("Deletado com sucesso!");
+    } catch (e) {
+      console.log("Erro " + e);
+    }
+  }
+
   return (
     <>
       <h1>Utilizando Firebase Database</h1>
@@ -84,11 +97,12 @@ function App() {
             onChange={(event) => setAutor(event.target.value)}
           />
         </div>
+        <br />
         <div className="box-input">
           <label htmlFor="idpost">Id post: </label>
           <input
             type="text"
-            placeholder="Somente para atualizar"
+            placeholder="Atualizar ou Deletar"
             id="idpost"
             value={postId}
             onChange={(event) => setPostId(event.target.value)}
@@ -97,7 +111,9 @@ function App() {
         <div className="container-buttons">
           <button onClick={handleAdd}>Cadastrar post</button>
           <button onClick={handleGet}>Buscar posts</button>
+          <br />
           <button onClick={handleUpg}>Atualizar post</button>
+          <button onClick={handleDel}>Excluir post</button>
         </div>
       </form>
 
