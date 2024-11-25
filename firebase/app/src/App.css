@@ -26,6 +26,7 @@
 }
 .box-input label {
   font-size: 1.4rem;
+  min-width: 100px;
 }
 
 .box-input input {
