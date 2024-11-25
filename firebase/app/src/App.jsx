@@ -1,10 +1,24 @@
 import { useState } from "react";
+
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "./utils/firebaseConnection";
+
 import "./App.css";
 
 function App() {
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
+
+  function handleAdd() {
+    const docRef = collection(db, "posts");
+    addDoc(docRef, {
+      titulo: titulo,
+      autor: autor,
+    }).then(console.log("Cadastrado com sucesso!"));
+
+    setTitulo("");
+    setAutor("");
+  }
 
   return (
     <>
@@ -32,14 +46,7 @@ function App() {
           />
         </div>
         <div className="container-buttons">
-          <button
-            onClick={(event) => {
-              event.preventDefault();
-              console.log("Titulo: " + titulo + " - Autor: " + autor);
-            }}
-          >
-            Cadastrar post
-          </button>
+          <button onClick={handleAdd}>Cadastrar post</button>
           <button>Buscas posts</button>
         </div>
       </form>
