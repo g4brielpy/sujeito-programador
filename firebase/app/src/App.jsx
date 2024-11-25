@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "./utils/firebaseConnection";
 
 import "./App.css";
@@ -8,6 +14,7 @@ import "./App.css";
 function App() {
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
+  const [postId, setPostId] = useState("");
   const [documentos, setDocumentos] = useState([]);
 
   function handleAdd() {
@@ -30,7 +37,23 @@ function App() {
         data: doc.data(),
       }));
 
-      setDocumentos(docAtualizados); // Atualiza corretamente o estado
+      setDocumentos(docAtualizados);
+    } catch (e) {
+      console.log("Erro " + e);
+    }
+  }
+
+  async function handleUpg() {
+    try {
+      const docRef = doc(db, "posts", postId);
+      await updateDoc(docRef, {
+        titulo: titulo,
+        autor: autor,
+      });
+
+      setAutor("");
+      setTitulo("");
+      setPostId("");
     } catch (e) {
       console.log("Erro " + e);
     }
@@ -61,14 +84,26 @@ function App() {
             onChange={(event) => setAutor(event.target.value)}
           />
         </div>
+        <div className="box-input">
+          <label htmlFor="idpost">Id post: </label>
+          <input
+            type="text"
+            placeholder="Somente para atualizar"
+            id="idpost"
+            value={postId}
+            onChange={(event) => setPostId(event.target.value)}
+          />
+        </div>
         <div className="container-buttons">
           <button onClick={handleAdd}>Cadastrar post</button>
-          <button onClick={handleGet}>Buscas posts</button>
+          <button onClick={handleGet}>Buscar posts</button>
+          <button onClick={handleUpg}>Atualizar post</button>
         </div>
       </form>
 
       {documentos.map((doc) => (
         <div key={doc.id} style={{ margin: "4rem 0" }}>
+          <p>ID: {doc.id}</p>
           <h3>Título: {doc.data.titulo}</h3>
           <h4>Autor: {doc.data.autor}</h4>
         </div>
