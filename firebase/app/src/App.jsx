@@ -8,6 +8,7 @@ import "./App.css";
 function App() {
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
+  const [documentos, setDocumentos] = useState([]);
 
   function handleAdd() {
     const docRef = collection(db, "posts");
@@ -18,6 +19,21 @@ function App() {
 
     setTitulo("");
     setAutor("");
+  }
+
+  async function handleGet() {
+    try {
+      const docRef = collection(db, "posts");
+      const snapshot = await getDocs(docRef);
+      const docAtualizados = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }));
+
+      setDocumentos(docAtualizados); // Atualiza corretamente o estado
+    } catch (e) {
+      console.log("Erro " + e);
+    }
   }
 
   return (
@@ -47,9 +63,16 @@ function App() {
         </div>
         <div className="container-buttons">
           <button onClick={handleAdd}>Cadastrar post</button>
-          <button>Buscas posts</button>
+          <button onClick={handleGet}>Buscas posts</button>
         </div>
       </form>
+
+      {documentos.map((doc) => (
+        <div key={doc.id} style={{ margin: "4rem 0" }}>
+          <h3>Título: {doc.data.titulo}</h3>
+          <h4>Autor: {doc.data.autor}</h4>
+        </div>
+      ))}
     </>
   );
 }
