@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { db } from "./utils/firebaseConnection";
 
 import {
   collection,
@@ -7,9 +8,8 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  onSnapshot,
 } from "firebase/firestore";
-import { db } from "./utils/firebaseConnection";
-
 import "./App.css";
 
 function App() {
@@ -17,6 +17,20 @@ function App() {
   const [autor, setAutor] = useState("");
   const [postId, setPostId] = useState("");
   const [documentos, setDocumentos] = useState([]);
+
+  useEffect(() => {
+    const colRef = collection(db, "posts");
+    const unsubscribe = onSnapshot(colRef, (snapshot) => {
+      const documentosAtualizados = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }));
+
+      setDocumentos(documentosAtualizados);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   function handleAdd() {
     const docRef = collection(db, "posts");
@@ -76,7 +90,7 @@ function App() {
     <>
       <h1>Utilizando Firebase Database</h1>
 
-      <form action="#">
+      <form>
         <div className="box-input">
           <label htmlFor="titulo">Titulo: </label>
           <input
