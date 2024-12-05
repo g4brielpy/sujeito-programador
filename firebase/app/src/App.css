@@ -42,6 +42,9 @@
   margin: 2rem 0;
 }
 
+.container-login {
+  margin-bottom: 6rem;
+}
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

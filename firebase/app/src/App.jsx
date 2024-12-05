@@ -18,6 +18,9 @@ function App() {
   const [postId, setPostId] = useState("");
   const [documentos, setDocumentos] = useState([]);
 
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+
   useEffect(() => {
     const colRef = collection(db, "posts");
     const unsubscribe = onSnapshot(colRef, (snapshot) => {
@@ -88,56 +91,81 @@ function App() {
 
   return (
     <>
-      <h1>Utilizando Firebase Database</h1>
+      <section className="container-login">
+        <h2>Login</h2>
+        <div className="box-input">
+          <label htmlFor="email">Email: </label>
+          <input
+            type="email"
+            placeholder="Digite seu email"
+            id="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </div>
+        <div className="box-input">
+          <label htmlFor="senha">Senha: </label>
+          <input
+            type="password"
+            placeholder="Digite sua senha"
+            id="senha"
+            value={senha}
+            onChange={(event) => setSenha(event.target.value)}
+          />
+        </div>
+      </section>
+      <main>
+        <h1>Utilizando Firebase Database</h1>
 
-      <form>
-        <div className="box-input">
-          <label htmlFor="titulo">Titulo: </label>
-          <input
-            type="text"
-            placeholder="Titulo do post"
-            id="titulo"
-            value={titulo}
-            onChange={(event) => setTitulo(event.target.value)}
-          />
-        </div>
-        <div className="box-input">
-          <label htmlFor="autor">Autor: </label>
-          <input
-            type="text"
-            placeholder="Autor do post"
-            id="autor"
-            value={autor}
-            onChange={(event) => setAutor(event.target.value)}
-          />
-        </div>
-        <br />
-        <div className="box-input">
-          <label htmlFor="idpost">Id post: </label>
-          <input
-            type="text"
-            placeholder="Atualizar ou Deletar"
-            id="idpost"
-            value={postId}
-            onChange={(event) => setPostId(event.target.value)}
-          />
-        </div>
-        <div className="container-buttons">
-          <button onClick={handleAdd}>Cadastrar post</button>
-          <button onClick={handleGet}>Buscar posts</button>
+        <form>
+          <div className="box-input">
+            <label htmlFor="titulo">Titulo: </label>
+            <input
+              type="text"
+              placeholder="Titulo do post"
+              id="titulo"
+              value={titulo}
+              onChange={(event) => setTitulo(event.target.value)}
+            />
+          </div>
+          <div className="box-input">
+            <label htmlFor="autor">Autor: </label>
+            <input
+              type="text"
+              placeholder="Autor do post"
+              id="autor"
+              value={autor}
+              onChange={(event) => setAutor(event.target.value)}
+            />
+          </div>
           <br />
-          <button onClick={handleUpg}>Atualizar post</button>
-          <button onClick={handleDel}>Excluir post</button>
-        </div>
-      </form>
+          <div className="box-input">
+            <label htmlFor="idpost">Id post: </label>
+            <input
+              type="text"
+              placeholder="Atualizar ou Deletar"
+              id="idpost"
+              value={postId}
+              onChange={(event) => setPostId(event.target.value)}
+            />
+          </div>
+          <div className="container-buttons">
+            <button onClick={handleAdd}>Cadastrar post</button>
+            <button onClick={handleGet}>Buscar posts</button>
+            <br />
+            <button onClick={handleUpg}>Atualizar post</button>
+            <button onClick={handleDel}>Excluir post</button>
+          </div>
+        </form>
 
-      {documentos.map((doc) => (
-        <div key={doc.id} style={{ margin: "4rem 0" }}>
-          <p>ID: {doc.id}</p>
-          <h3>Título: {doc.data.titulo}</h3>
-          <h4>Autor: {doc.data.autor}</h4>
-        </div>
-      ))}
+        {documentos.map((doc) => (
+          <div key={doc.id} style={{ margin: "4rem 0" }}>
+            <p>ID: {doc.id}</p>
+            <h3>Título: {doc.data.titulo}</h3>
+            <h4>Autor: {doc.data.autor}</h4>
+          </div>
+        ))}
+      </main>
     </>
   );
 }
