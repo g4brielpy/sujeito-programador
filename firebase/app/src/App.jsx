@@ -91,8 +91,10 @@ function App() {
 
   return (
     <>
+      <h1>Utilizando Firebase Database</h1>
+
       <section className="container-login">
-        <h2>Login</h2>
+        <h2>Usuários</h2>
         <div className="box-input">
           <label htmlFor="email">Email: </label>
           <input
@@ -115,8 +117,7 @@ function App() {
         </div>
       </section>
       <main>
-        <h1>Utilizando Firebase Database</h1>
-
+        <h2>Posts</h2>
         <form>
           <div className="box-input">
             <label htmlFor="titulo">Titulo: </label>
