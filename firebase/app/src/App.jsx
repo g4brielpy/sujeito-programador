@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { db } from "./utils/firebaseConnection";
+import { db, auth } from "./utils/firebaseConnection";
 
 import {
   collection,
@@ -10,6 +10,8 @@ import {
   doc,
   onSnapshot,
 } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
 import "./App.css";
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const colRef = collection(db, "posts");
@@ -89,6 +92,20 @@ function App() {
     }
   }
 
+  async function handleAddUser() {
+    try {
+      await createUserWithEmailAndPassword(auth, email, senha);
+      alert("Usuário cadastrado com sucesso!");
+
+      setEmail("");
+      setSenha("");
+    } catch (e) {
+      console.log("Erro " + e);
+    }
+  }
+
+  async function handleGetUser() {}
+
   return (
     <>
       <h1>Utilizando Firebase Database</h1>
@@ -114,6 +131,9 @@ function App() {
             value={senha}
             onChange={(event) => setSenha(event.target.value)}
           />
+        </div>
+        <div className="container-buttons">
+          <button onClick={handleAddUser}>Cadastrar usuário</button>
         </div>
       </section>
       <main>
