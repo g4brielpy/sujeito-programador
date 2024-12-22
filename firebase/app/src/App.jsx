@@ -10,7 +10,10 @@ import {
   doc,
   onSnapshot,
 } from "firebase/firestore";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 import "./App.css";
 
@@ -22,6 +25,8 @@ function App() {
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+
+  const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -104,14 +109,16 @@ function App() {
     }
   }
 
-  async function handleGetUser() {}
+  // async function handleGetUser() {}
+
+  async function logarUser() {}
 
   return (
     <>
       <h1>Utilizando Firebase Database</h1>
 
       <section className="container-login">
-        <h2>Usuários</h2>
+        <h2>Usuário: {user.length ? "" : "Convidado"}</h2>
         <div className="box-input">
           <label htmlFor="email">Email: </label>
           <input
