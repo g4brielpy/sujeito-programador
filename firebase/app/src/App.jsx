@@ -14,6 +14,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 import "./App.css";
@@ -42,6 +43,18 @@ function App() {
     });
 
     return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (dataUser) => {
+      if (dataUser) {
+        const newUser = {
+          uid: dataUser.uid,
+          email: dataUser.email,
+        };
+        setUser(newUser);
+      }
+    });
   }, []);
 
   function handleAdd() {
@@ -100,7 +113,7 @@ function App() {
 
   async function handleAddUser() {
     try {
-      await createUserWithEmailpasswordAndPassword(auth, email, senha);
+      await createUserWithEmailAndPassword(auth, email, senha);
       alert("Usuário cadastrado com sucesso!");
 
       setEmail("");
