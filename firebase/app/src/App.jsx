@@ -13,6 +13,7 @@ import {
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 
 import "./App.css";
@@ -99,7 +100,7 @@ function App() {
 
   async function handleAddUser() {
     try {
-      await createUserWithEmailAndPassword(auth, email, senha);
+      await createUserWithEmailpasswordAndPassword(auth, email, senha);
       alert("Usuário cadastrado com sucesso!");
 
       setEmail("");
@@ -118,7 +119,7 @@ function App() {
       };
 
       setUser(newUser);
-      alert("Usuário user.lengthlogado com sucesso!");
+      alert("Usuário logado com sucesso!");
 
       setEmail("");
       setSenha("");
@@ -126,6 +127,13 @@ function App() {
     } catch (e) {
       console.log("Erro: " + e);
     }
+  }
+
+  async function handleSignOutUser() {
+    await signOut(auth);
+
+    alert("Usuário deslogado com sucesso!");
+    setUser({});
   }
 
   return (
@@ -157,6 +165,10 @@ function App() {
         <div className="container-buttons">
           <button onClick={handleAddUser}>Cadastrar usuário</button>
           <button onClick={handleLoginUser}>Login</button>
+
+          {Object.keys(user).length != 0 && (
+            <button onClick={handleSignOutUser}>Sair</button>
+          )}
         </div>
       </section>
       <main>
