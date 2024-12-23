@@ -109,16 +109,31 @@ function App() {
     }
   }
 
-  // async function handleGetUser() {}
+  async function handleLoginUser() {
+    try {
+      const userData = await signInWithEmailAndPassword(auth, email, senha);
+      const newUser = {
+        uid: userData.user.uid,
+        email: userData.user.email,
+      };
 
-  async function logarUser() {}
+      setUser(newUser);
+      alert("Usuário user.lengthlogado com sucesso!");
+
+      setEmail("");
+      setSenha("");
+      console.log(newUser);
+    } catch (e) {
+      console.log("Erro: " + e);
+    }
+  }
 
   return (
     <>
       <h1>Utilizando Firebase Database</h1>
 
       <section className="container-login">
-        <h2>Usuário: {user.length ? "" : "Convidado"}</h2>
+        <h2>Usuário: {Object.keys(user).length ? user.email : "Convidado"}</h2>
         <div className="box-input">
           <label htmlFor="email">Email: </label>
           <input
@@ -141,6 +156,7 @@ function App() {
         </div>
         <div className="container-buttons">
           <button onClick={handleAddUser}>Cadastrar usuário</button>
+          <button onClick={handleLoginUser}>Login</button>
         </div>
       </section>
       <main>
