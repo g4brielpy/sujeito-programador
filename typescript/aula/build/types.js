@@ -6,3 +6,14 @@ const user = {
     nome: "Gabriel",
     idade: 19,
 };
+var Themes;
+(function (Themes) {
+    Themes["dark"] = "#000";
+    Themes["claro"] = "#fff";
+})(Themes || (Themes = {}));
+var Status;
+(function (Status) {
+    Status[Status["ADMIN"] = 0] = "ADMIN";
+    Status[Status["USER"] = 1] = "USER";
+    Status[Status["SUPPORT"] = 2] = "SUPPORT";
+})(Status || (Status = {}));

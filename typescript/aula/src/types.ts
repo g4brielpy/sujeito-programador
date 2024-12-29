@@ -12,3 +12,13 @@ const user: { nome: string; idade: number } = {
   nome: "Gabriel",
   idade: 19,
 };
+
+enum Themes {
+  dark = "#000",
+  claro = "#fff",
+}
+enum Status {
+  ADMIN, // valor = 0
+  USER, // valor = 1
+  SUPPORT, // valor = 2
+}
