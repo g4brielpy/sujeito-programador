@@ -1,5 +1,14 @@
-let arr: Array<number> = [];
-let arr2: number[] = [];
+// Declaração de string
+const texto: string = "Lorem";
 
-arr = [1, 2, 3];
-arr2 = [1, 2, 3];
+// Declaração de number
+const numero: number = 20;
+
+// Declaração de Array
+const lista: string[] = ["Item 1", "Item 2", "Item 3"];
+
+// Declaração de Objetos
+const user: { nome: string; idade: number } = {
+  nome: "Gabriel",
+  idade: 19,
+};
