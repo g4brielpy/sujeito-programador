@@ -22,3 +22,12 @@ enum Status {
   USER, // valor = 1
   SUPPORT, // valor = 2
 }
+
+// Funcões
+function saudacoes(nome: string): void {
+  const mensagem: string = "Olá " + nome;
+  console.log(mensagem);
+}
+saudacoes("Gabriel");
+
+// Arrow function

@@ -17,3 +17,8 @@ var Status;
     Status[Status["USER"] = 1] = "USER";
     Status[Status["SUPPORT"] = 2] = "SUPPORT";
 })(Status || (Status = {}));
+function saudacoes(nome) {
+    const mensagem = "Olá " + nome;
+    console.log(mensagem);
+}
+saudacoes("Gabriel");
