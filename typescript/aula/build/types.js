@@ -21,4 +21,8 @@ function saudacoes(nome) {
     const mensagem = "Olá " + nome;
     console.log(mensagem);
 }
-saudacoes("Gabriel");
+const saudacoesArrow = (nome) => {
+    const mensagem = "Olá " + nome;
+    console.log(mensagem);
+};
+saudacoesArrow("Gabriel Iuri");

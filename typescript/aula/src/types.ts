@@ -28,6 +28,11 @@ function saudacoes(nome: string): void {
   const mensagem: string = "Olá " + nome;
   console.log(mensagem);
 }
-saudacoes("Gabriel");
 
 // Arrow function
+
+const saudacoesArrow = (nome: string): void => {
+  const mensagem: string = "Olá " + nome;
+  console.log(mensagem);
+};
+saudacoesArrow("Gabriel Iuri");
