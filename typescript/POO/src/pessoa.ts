@@ -26,7 +26,36 @@ class Pessoa {
   }
 }
 
+// Aplicando herança da class Pessoa
+class Funcionario extends Pessoa {
+  cargo: string;
+  salario: number;
+
+  constructor(
+    nome: string,
+    idade: number,
+    enderenco: string,
+    cargo: string,
+    salario: number
+  ) {
+    super(nome, idade, enderenco);
+
+    this.cargo = cargo;
+    this.salario = salario;
+  }
+}
+
+// instânciando cada class
 const pessoa: Pessoa = new Pessoa("Gabriel", 19, "Belo Horizonte");
 pessoa.saudacao();
+
+const funcionario: Funcionario = new Funcionario(
+  "Iuri",
+  19,
+  "Belo Horizonte",
+  "Dev",
+  2_500
+);
+funcionario.saudacao();
 
 console.log("Total de pessoas: " + Pessoa.totalPessoas);
