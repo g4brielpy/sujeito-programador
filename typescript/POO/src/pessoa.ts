@@ -5,7 +5,7 @@ class Pessoa {
   endereco: string;
 
   // atributo pertencente a Class.
-  static totalPessoas: number;
+  static totalPessoas: number = 0;
 
   constructor(nome: string, idade: number, endereco: string) {
     // inicializando a instância com os atributos definidos.
@@ -14,13 +14,19 @@ class Pessoa {
     this.endereco = endereco;
 
     // incrementando o atributo da class a cada instância criada.
-    Pessoa.totalPessoas++;
+    Pessoa.inclementarPessoa();
   }
 
   saudacao() {
     console.log(`Meu nome é ${this.nome} e tenho ${this.idade} anos.`);
   }
+
+  static inclementarPessoa() {
+    Pessoa.totalPessoas++;
+  }
 }
 
 const pessoa: Pessoa = new Pessoa("Gabriel", 19, "Belo Horizonte");
 pessoa.saudacao();
+
+console.log("Total de pessoas: " + Pessoa.totalPessoas);
