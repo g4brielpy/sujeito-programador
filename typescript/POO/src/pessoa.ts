@@ -16,6 +16,11 @@ class Pessoa {
     // incrementando o atributo da class a cada instância criada.
     Pessoa.totalPessoas++;
   }
+
+  saudacao() {
+    console.log(`Meu nome é ${this.nome} e tenho ${this.idade} anos.`);
+  }
 }
 
 const pessoa: Pessoa = new Pessoa("Gabriel", 19, "Belo Horizonte");
+pessoa.saudacao();
