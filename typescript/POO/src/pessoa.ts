@@ -1,6 +1,6 @@
 class Pessoa {
   // Atributos pertencente de cada Instância.
-  nome: string;
+  public nome: string;
   idade: number;
   endereco: string;
 
@@ -17,7 +17,7 @@ class Pessoa {
     Pessoa.inclementarPessoa();
   }
 
-  saudacao() {
+  saudacao(): void {
     console.log(`Meu nome é ${this.nome} e tenho ${this.idade} anos.`);
   }
 
@@ -29,7 +29,7 @@ class Pessoa {
 // Aplicando herança da class Pessoa
 class Funcionario extends Pessoa {
   cargo: string;
-  salario: number;
+  private salario: number;
 
   constructor(
     nome: string,
@@ -42,6 +42,10 @@ class Funcionario extends Pessoa {
 
     this.cargo = cargo;
     this.salario = salario;
+  }
+
+  getSalario(): void {
+    console.log(`R$ ${this.salario}`);
   }
 }
 
@@ -57,5 +61,6 @@ const funcionario: Funcionario = new Funcionario(
   2_500
 );
 funcionario.saudacao();
+funcionario.getSalario();
 
 console.log("Total de pessoas: " + Pessoa.totalPessoas);

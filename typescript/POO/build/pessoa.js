@@ -24,10 +24,14 @@ class Funcionario extends Pessoa {
         this.cargo = cargo;
         this.salario = salario;
     }
+    getSalario() {
+        console.log(`R$ ${this.salario}`);
+    }
 }
 // instânciando cada class
 const pessoa = new Pessoa("Gabriel", 19, "Belo Horizonte");
 pessoa.saudacao();
 const funcionario = new Funcionario("Iuri", 19, "Belo Horizonte", "Dev", 2500);
 funcionario.saudacao();
+funcionario.getSalario();
 console.log("Total de pessoas: " + Pessoa.totalPessoas);
