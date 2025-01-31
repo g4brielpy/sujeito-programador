@@ -22,10 +22,10 @@ class Pessoa {
         return this.idade;
     }
     // Métodos SET
-    setNome(nomeNovo) {
+    set setNome(nomeNovo) {
         this.nome = nomeNovo;
     }
-    setIdade(idadeNova) {
+    set setIdade(idadeNova) {
         this.idade = idadeNova;
     }
 }
@@ -38,16 +38,14 @@ class Funcionario extends Pessoa {
         this.cargo = cargo;
         this.salario = salario;
     }
-    getSalario() {
-        console.log(`R$ ${this.salario}`);
+    get getSalario() {
+        return `R$ ${this.salario}`;
     }
 }
 // instânciando cada class
 const pessoa = new Pessoa("Gabriel", 19, "Belo Horizonte");
-pessoa.saudacao();
-pessoa.setNome("Gabriel Iuri");
+pessoa.setNome = "Gabriel Iuri";
 console.log(pessoa.getNome);
 const funcionario = new Funcionario("Iuri", 19, "Belo Horizonte", "Dev", 2500);
+// console.log();
 funcionario.saudacao();
-funcionario.getSalario();
-console.log("Total de pessoas: " + Pessoa.totalPessoas);
