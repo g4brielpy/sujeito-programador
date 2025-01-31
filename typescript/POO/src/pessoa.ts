@@ -1,8 +1,8 @@
 class Pessoa {
   // Atributos pertencente de cada Instância.
   public nome: string;
-  idade: number;
-  endereco: string;
+  protected idade: number;
+  protected endereco: string;
 
   // atributo pertencente a Class.
   static totalPessoas: number = 0;
@@ -28,7 +28,7 @@ class Pessoa {
 
 // Aplicando herança da class Pessoa
 class Funcionario extends Pessoa {
-  cargo: string;
+  protected cargo: string;
   private salario: number;
 
   constructor(
