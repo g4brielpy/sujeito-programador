@@ -8,11 +8,25 @@ class Pessoa {
         // incrementando o atributo da class a cada instância criada.
         Pessoa.inclementarPessoa();
     }
+    static inclementarPessoa() {
+        Pessoa.totalPessoas++;
+    }
     saudacao() {
         console.log(`Meu nome é ${this.nome} e tenho ${this.idade} anos.`);
     }
-    static inclementarPessoa() {
-        Pessoa.totalPessoas++;
+    // Métodos GET
+    getNome() {
+        return this.nome;
+    }
+    getIdade() {
+        return this.idade;
+    }
+    // Métodos SET
+    setNome(nomeNovo) {
+        this.nome = nomeNovo;
+    }
+    setIdade(idadeNova) {
+        this.idade = idadeNova;
     }
 }
 // atributo pertencente a Class.
@@ -31,6 +45,8 @@ class Funcionario extends Pessoa {
 // instânciando cada class
 const pessoa = new Pessoa("Gabriel", 19, "Belo Horizonte");
 pessoa.saudacao();
+pessoa.setNome("Gabriel Iuri");
+console.log(pessoa.getNome());
 const funcionario = new Funcionario("Iuri", 19, "Belo Horizonte", "Dev", 2500);
 funcionario.saudacao();
 funcionario.getSalario();
