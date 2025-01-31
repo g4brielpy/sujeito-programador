@@ -1,6 +1,6 @@
 class Pessoa {
   // Atributos pertencente de cada Instância.
-  public nome: string;
+  protected nome: string;
   protected idade: number;
   protected endereco: string;
 
@@ -17,12 +17,30 @@ class Pessoa {
     Pessoa.inclementarPessoa();
   }
 
+  static inclementarPessoa(): void {
+    Pessoa.totalPessoas++;
+  }
+
   saudacao(): void {
     console.log(`Meu nome é ${this.nome} e tenho ${this.idade} anos.`);
   }
 
-  static inclementarPessoa() {
-    Pessoa.totalPessoas++;
+  // Métodos GET
+  get getNome(): string {
+    return this.nome;
+  }
+
+  get getIdade(): number {
+    return this.idade;
+  }
+
+  // Métodos SET
+  setNome(nomeNovo: string): void {
+    this.nome = nomeNovo;
+  }
+
+  setIdade(idadeNova: number): void {
+    this.idade = idadeNova;
   }
 }
 
@@ -52,6 +70,9 @@ class Funcionario extends Pessoa {
 // instânciando cada class
 const pessoa: Pessoa = new Pessoa("Gabriel", 19, "Belo Horizonte");
 pessoa.saudacao();
+
+pessoa.setNome("Gabriel Iuri");
+console.log(pessoa.getNome);
 
 const funcionario: Funcionario = new Funcionario(
   "Iuri",

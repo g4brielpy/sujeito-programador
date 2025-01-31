@@ -15,10 +15,10 @@ class Pessoa {
         console.log(`Meu nome é ${this.nome} e tenho ${this.idade} anos.`);
     }
     // Métodos GET
-    getNome() {
+    get getNome() {
         return this.nome;
     }
-    getIdade() {
+    get getIdade() {
         return this.idade;
     }
     // Métodos SET
@@ -46,7 +46,7 @@ class Funcionario extends Pessoa {
 const pessoa = new Pessoa("Gabriel", 19, "Belo Horizonte");
 pessoa.saudacao();
 pessoa.setNome("Gabriel Iuri");
-console.log(pessoa.getNome());
+console.log(pessoa.getNome);
 const funcionario = new Funcionario("Iuri", 19, "Belo Horizonte", "Dev", 2500);
 funcionario.saudacao();
 funcionario.getSalario();
