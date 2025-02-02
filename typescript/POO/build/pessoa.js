@@ -47,5 +47,3 @@ const pessoa = new Pessoa("Gabriel", 19, "Belo Horizonte");
 pessoa.setNome = "Gabriel Iuri";
 console.log(pessoa.getNome);
 const funcionario = new Funcionario("Iuri", 19, "Belo Horizonte", "Dev", 2500);
-// console.log();
-funcionario.saudacao();

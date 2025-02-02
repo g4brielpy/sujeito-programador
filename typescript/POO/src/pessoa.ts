@@ -80,5 +80,3 @@ const funcionario: Funcionario = new Funcionario(
   "Dev",
   2_500
 );
-// console.log();
-funcionario.saudacao();
