@@ -1,20 +1,30 @@
 type contaType = "CORRENTE" | "POUPANÇA";
 
-class Conta {
-  tipo: contaType;
+abstract class Conta {
   saldo: number;
-  private credito: number = 500;
+  protected _credito: number = 500;
 
-  constructor(tipo: contaType, saldo: number) {
-    this.tipo = tipo;
+  constructor(saldo: number) {
     this.saldo = saldo;
   }
 
-  consultarCredito() {
-    return this.credito;
+  get consultarCredito(): number {
+    return this._credito;
   }
 }
 
-const minhaConta: Conta = new Conta("CORRENTE", 250);
+class ContaCorrente extends Conta {
+  tipo: contaType;
 
-console.log(minhaConta.consultarCredito());
+  constructor(saldo: number) {
+    super(saldo);
+    this.tipo = "CORRENTE";
+    this._credito = 1_000;
+  }
+}
+
+const minhaConta: ContaCorrente = new ContaCorrente(2_500);
+
+console.log(minhaConta);
+
+// const minhaConta: Conta = new Conta("CORRENTE", 250);

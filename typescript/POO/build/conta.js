@@ -1,13 +1,20 @@
 "use strict";
 class Conta {
-    constructor(tipo, saldo) {
-        this.credito = 500;
-        this.tipo = tipo;
+    constructor(saldo) {
+        this._credito = 500;
         this.saldo = saldo;
     }
-    consultarCredito() {
-        return this.credito;
+    get consultarCredito() {
+        return this._credito;
     }
 }
-const minhaConta = new Conta("CORRENTE", 250);
-console.log(minhaConta.consultarCredito());
+class ContaCorrente extends Conta {
+    constructor(saldo) {
+        super(saldo);
+        this.tipo = "CORRENTE";
+        this._credito = 1000;
+    }
+}
+const minhaConta = new ContaCorrente(2500);
+console.log(minhaConta);
+// const minhaConta: Conta = new Conta("CORRENTE", 250);
