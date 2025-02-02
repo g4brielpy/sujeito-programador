@@ -2,10 +2,18 @@
 class Conta {
     constructor(saldo) {
         this._credito = 500;
-        this.saldo = saldo;
+        this._saldo = saldo;
     }
     get consultarCredito() {
         return this._credito;
+    }
+    set alterarSaldo(novoSaldo) {
+        if (novoSaldo > 0) {
+            this._saldo = novoSaldo;
+        }
+        else {
+            console.log("Valor inválido: " + novoSaldo);
+        }
     }
 }
 class ContaCorrente extends Conta {
@@ -16,5 +24,5 @@ class ContaCorrente extends Conta {
     }
 }
 const minhaConta = new ContaCorrente(2500);
+minhaConta.alterarSaldo = -2;
 console.log(minhaConta);
-// const minhaConta: Conta = new Conta("CORRENTE", 250);
