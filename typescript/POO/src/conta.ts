@@ -1,15 +1,23 @@
 type contaType = "CORRENTE" | "POUPANÇA";
 
 abstract class Conta {
-  saldo: number;
+  protected _saldo: number;
   protected _credito: number = 500;
 
   constructor(saldo: number) {
-    this.saldo = saldo;
+    this._saldo = saldo;
   }
 
   get consultarCredito(): number {
     return this._credito;
+  }
+
+  set alterarSaldo(novoSaldo: number) {
+    if (novoSaldo > 0) {
+      this._saldo = novoSaldo;
+    } else {
+      console.log("Valor inválido: " + novoSaldo);
+    }
   }
 }
 
@@ -24,7 +32,6 @@ class ContaCorrente extends Conta {
 }
 
 const minhaConta: ContaCorrente = new ContaCorrente(2_500);
+minhaConta.alterarSaldo = -2;
 
 console.log(minhaConta);
-
-// const minhaConta: Conta = new Conta("CORRENTE", 250);
