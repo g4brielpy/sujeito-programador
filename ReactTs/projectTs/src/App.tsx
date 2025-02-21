@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+
+interface AlunoProps {
+  nome: string;
+  idade: number;
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [nome, setNome] = useState<string>("");
+  const [idade, setIdade] = useState<number>(0);
+
+  const [inforAluno, setInforAluno] = useState<AlunoProps>();
 
   return (
     <>
+      <h1>React + TypeScript</h1>
+
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <h2>Aluno</h2>
+        <div className="input-group">
+          <input
+            type="text"
+            placeholder="Digite seu nome"
+            name="nome"
+            onChange={(e) => setNome(e.target.value)}
+          />
+          <input
+            type="number"
+            name="idade"
+            id="idade"
+            placeholder="Digite sua idade"
+            onChange={(e) => setIdade(Number(e.target.value))}
+          />
+        </div>
+        <button
+          onClick={() => {
+            setInforAluno({ nome, idade });
+          }}
+        >
+          Salvar
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+        {inforAluno ? (
+          <div>
+            <h3>Informações</h3>
+            <p>Nome: {inforAluno.nome}</p>
+            <p>Idade: {inforAluno.idade}</p>
+          </div>
+        ) : null}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
