@@ -93,11 +93,13 @@ function App() {
           <ul className="lista-tarefas">
             {tarefas.map((tarefa, index) => (
               <li key={index}>
-                <strong>{tarefa}</strong> -{" "}
-                <button onClick={() => deletarTarefa(index)}>Excluir</button>{" "}
-                <button onClick={() => atualizarTarefa(tarefa, index)}>
-                  Atualizar
-                </button>
+                <strong>{tarefa}</strong>
+                <div>
+                  <button onClick={() => deletarTarefa(index)}>Excluir</button>{" "}
+                  <button onClick={() => atualizarTarefa(tarefa, index)}>
+                    Atualizar
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
