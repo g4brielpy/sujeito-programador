@@ -14,6 +14,16 @@ function App() {
     setInputTarefa("");
   }
 
+  function deletarTarefa(index: number): void {
+    const tarefasAtualizadas: string[] = tarefas.filter((tarefa, i) => {
+      if (index != i) {
+        return tarefa;
+      }
+    });
+
+    setTarefas(tarefasAtualizadas);
+  }
+
   return (
     <>
       <h1>Lista de Tarefas</h1>
@@ -29,6 +39,7 @@ function App() {
           type="text"
           placeholder="Digite uma nova tarefa"
           onChange={(e) => setInputTarefa(e.target.value)}
+          value={inputTarefa}
         />
         <button type="submit">Adicionar</button>
       </form>
@@ -37,7 +48,11 @@ function App() {
         <section>
           <ul className="lista-tarefas">
             {tarefas.map((tarefa, index) => (
-              <li key={index}>{tarefa}</li>
+              <li key={index}>
+                <strong>{tarefa}</strong> -{" "}
+                <button onClick={() => deletarTarefa(index)}>Excluir</button>{" "}
+                <button onClick={() => console}>Atualizar</button>
+              </li>
             ))}
           </ul>
         </section>
