@@ -1,11 +1,22 @@
 import { useState } from "react";
 import "./App.css";
 
+interface editaProps {
+  enabled: boolean;
+  tarefa: string;
+  index: number | null;
+}
+
 function App() {
   const [inputTarefa, setInputTarefa] = useState<string>("");
   const [tarefas, setTarefas] = useState<string[]>([]);
+  const [edita, setEdita] = useState<editaProps>({
+    enabled: false,
+    tarefa: "",
+    index: null,
+  });
 
-  function adicinarTarefa(): void {
+  function adicionarTarefa(): void {
     if (inputTarefa == "") {
       return;
     }
@@ -24,15 +35,46 @@ function App() {
     setTarefas(tarefasAtualizadas);
   }
 
+  function atualizarTarefa(tarefa: string, index: number): void {
+    setInputTarefa(tarefa);
+    setEdita({
+      enabled: true,
+      tarefa: tarefa,
+      index: index,
+    });
+  }
+
+  function salvarAtualizacao(): void {
+    const tarefasAtualizadas: string[] = tarefas.map((oldTarefa, oldIndex) => {
+      if (oldIndex == edita.index) {
+        return inputTarefa;
+      }
+
+      return oldTarefa;
+    });
+
+    setTarefas(tarefasAtualizadas);
+    setInputTarefa("");
+    setEdita({
+      enabled: false,
+      tarefa: "",
+      index: null,
+    });
+  }
+
   return (
     <>
       <h1>Lista de Tarefas</h1>
 
       <form
         className="form"
-        onSubmit={(e) => {
+        onSubmit={(e: React.FormEvent) => {
           e.preventDefault();
-          adicinarTarefa();
+          if (edita.enabled) {
+            salvarAtualizacao();
+          } else {
+            adicionarTarefa();
+          }
         }}
       >
         <input
@@ -41,7 +83,9 @@ function App() {
           onChange={(e) => setInputTarefa(e.target.value)}
           value={inputTarefa}
         />
-        <button type="submit">Adicionar</button>
+        <button type="submit">
+          {edita.enabled ? "Atualizar" : "Adicionar"}
+        </button>
       </form>
 
       {tarefas.length > 0 && (
@@ -51,7 +95,9 @@ function App() {
               <li key={index}>
                 <strong>{tarefa}</strong> -{" "}
                 <button onClick={() => deletarTarefa(index)}>Excluir</button>{" "}
-                <button onClick={() => console}>Atualizar</button>
+                <button onClick={() => atualizarTarefa(tarefa, index)}>
+                  Atualizar
+                </button>
               </li>
             ))}
           </ul>
