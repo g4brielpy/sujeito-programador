@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 interface editaProps {
@@ -8,6 +8,9 @@ interface editaProps {
 }
 
 function App() {
+  const renderRef: React.RefObject<number> = useRef(0);
+  const inputTarefaRef = useRef<HTMLInputElement>(null);
+
   const [inputTarefa, setInputTarefa] = useState<string>("");
   const [tarefas, setTarefas] = useState<string[]>([]);
   const [edita, setEdita] = useState<editaProps>({
@@ -37,6 +40,7 @@ function App() {
 
   function atualizarTarefa(tarefa: string, index: number): void {
     setInputTarefa(tarefa);
+    inputTarefaRef.current?.focus();
     setEdita({
       enabled: true,
       tarefa: tarefa,
@@ -69,6 +73,12 @@ function App() {
   }, []);
 
   useEffect(() => {
+    // Não execultar esse Effect na primeira renderização, pois vai setar a lista de tarefas vazia
+    if (renderRef.current == 0) {
+      renderRef.current += 1;
+      return;
+    }
+
     localStorage.setItem("@tarefas", JSON.stringify(tarefas));
   }, [tarefas]);
 
@@ -92,6 +102,7 @@ function App() {
           placeholder="Digite uma nova tarefa"
           onChange={(e) => setInputTarefa(e.target.value)}
           value={inputTarefa}
+          ref={inputTarefaRef}
         />
         <button type="submit">
           {edita.enabled ? "Atualizar" : "Adicionar"}
