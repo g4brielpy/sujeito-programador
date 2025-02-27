@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 interface editaProps {
@@ -61,6 +61,16 @@ function App() {
       index: null,
     });
   }
+
+  useEffect(() => {
+    const buscarTarefasStore: string | null = localStorage.getItem("@tarefas");
+
+    if (buscarTarefasStore) setTarefas(JSON.parse(buscarTarefasStore));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("@tarefas", JSON.stringify(tarefas));
+  }, [tarefas]);
 
   return (
     <>
