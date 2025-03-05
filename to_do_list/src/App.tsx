@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import "./App.css";
 
 interface editaProps {
@@ -18,6 +18,8 @@ function App() {
     tarefa: "",
     index: null,
   });
+
+  const totalDeTarefas: number = useMemo(() => tarefas.length, [tarefas]);
 
   function adicionarTarefa(): void {
     if (inputTarefa == "") {
@@ -111,6 +113,7 @@ function App() {
 
       {tarefas.length > 0 && (
         <section>
+          <h3>Total de tarefas: {totalDeTarefas}</h3>
           <ul className="lista-tarefas">
             {tarefas.map((tarefa, index) => (
               <li key={index}>
