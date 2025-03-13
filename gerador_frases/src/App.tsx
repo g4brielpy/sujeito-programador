@@ -1,6 +1,7 @@
 import "./App.css";
 
 import { ButtonCategoria } from "./components/ButtonCategoria";
+import { ButtonFrase } from "./components/ButtonFrase";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
               <ButtonCategoria>Bom Dia</ButtonCategoria>
             </div>
           </section>
+          <ButtonFrase>Gerar Frase</ButtonFrase>
         </div>
       </main>
     </>

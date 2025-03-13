@@ -1,0 +1,17 @@
+.button-frase {
+  background-color: #1fa4db;
+  color: #fff;
+
+  border: 0;
+  outline: 0;
+
+  padding: 0.6rem 1rem;
+  font-size: 1.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:hover {
+    transition: 0.6s;
+    opacity: 0.6;
+  }
+}
