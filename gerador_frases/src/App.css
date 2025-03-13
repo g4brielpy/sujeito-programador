@@ -1,0 +1,21 @@
+.main-principal {
+  height: 100dvh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.max-conteudo {
+  width: 100%;
+  max-width: 800px;
+}
+
+.section-categoria {
+  margin: 2rem auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
