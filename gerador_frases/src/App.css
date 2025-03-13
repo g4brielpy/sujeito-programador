@@ -9,6 +9,12 @@
 .max-conteudo {
   width: 100%;
   max-width: 800px;
+  text-align: center;
+}
+
+.logo {
+  max-width: 400px;
+  text-align: center;
 }
 
 .section-categoria {
@@ -27,5 +33,7 @@
   & > div {
     display: flex;
     gap: 1rem;
+
+    margin-bottom: 2rem;
   }
 }
