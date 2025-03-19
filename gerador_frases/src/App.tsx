@@ -3,6 +3,8 @@ import "./App.css";
 import { ButtonCategoria } from "./components/ButtonCategoria";
 import { ButtonFrase } from "./components/ButtonFrase";
 
+import { frases } from "./db";
+
 function App() {
   return (
     <>
@@ -12,8 +14,9 @@ function App() {
           <section className="section-categoria">
             <h2>Categorias</h2>
             <div>
-              <ButtonCategoria>Motivação</ButtonCategoria>
-              <ButtonCategoria>Bom Dia</ButtonCategoria>
+              {frases.map((item, index) => (
+                <ButtonCategoria key={item.id}>{item.nome}</ButtonCategoria>
+              ))}
             </div>
             <ButtonFrase>Gerar Frase</ButtonFrase>
           </section>
