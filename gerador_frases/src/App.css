@@ -37,3 +37,16 @@
     margin-bottom: 2rem;
   }
 }
+
+.texto-frase {
+  background-color: #fff;
+  color: #814313;
+
+  padding: 1rem 3rem;
+  margin-top: 4rem;
+  border-radius: 8px;
+
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 2rem;
+}

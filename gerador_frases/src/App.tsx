@@ -8,8 +8,9 @@ import { frases } from "./db";
 
 function App() {
   const [indexCategoria, setIndexCategoria] = useState<number>(0);
-  const [fraseSelecionada, setFraseSelecionada] = useState<string>("");
-
+  const [fraseSelecionada, setFraseSelecionada] = useState<string>(
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non, tenetur! Eveniet impedit, aut repellendus"
+  );
   return (
     <>
       <main className="main-principal">
