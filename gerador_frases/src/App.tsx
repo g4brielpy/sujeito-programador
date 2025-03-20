@@ -9,6 +9,18 @@ import { frases } from "./db";
 function App() {
   const [indexCategoria, setIndexCategoria] = useState<number>(0);
   const [fraseSelecionada, setFraseSelecionada] = useState<string>("");
+
+  function handleFrase(): void {
+    const categoriaSelecionada: { id: number; nome: string; frases: string[] } =
+      frases[indexCategoria];
+
+    const qtdsFrases: number = categoriaSelecionada.frases.length;
+    const indexAleatorio: number = Math.floor(Math.random() * qtdsFrases);
+
+    const fraseAleatoria: string = categoriaSelecionada.frases[indexAleatorio];
+    setFraseSelecionada(fraseAleatoria);
+  }
+
   return (
     <>
       <main className="main-principal">
@@ -29,7 +41,7 @@ function App() {
                 </ButtonCategoria>
               ))}
             </div>
-            <ButtonFrase>Gerar Frase</ButtonFrase>
+            <ButtonFrase onClick={handleFrase}>Gerar Frase</ButtonFrase>
           </section>
 
           {fraseSelecionada != "" && (
