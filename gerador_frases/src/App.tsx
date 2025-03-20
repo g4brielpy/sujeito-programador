@@ -1,11 +1,15 @@
 import "./App.css";
 
+import { useState } from "react";
+
 import { ButtonCategoria } from "./components/ButtonCategoria";
 import { ButtonFrase } from "./components/ButtonFrase";
-
 import { frases } from "./db";
 
 function App() {
+  const [indexCategoria, setIndexCategoria] = useState<number>(0);
+  const [fraseSelecionada, setFraseSelecionada] = useState<string>("");
+
   return (
     <>
       <main className="main-principal">
@@ -20,6 +24,10 @@ function App() {
             </div>
             <ButtonFrase>Gerar Frase</ButtonFrase>
           </section>
+
+          {fraseSelecionada != "" && (
+            <p className="texto-frase">{fraseSelecionada}</p>
+          )}
         </div>
       </main>
     </>
