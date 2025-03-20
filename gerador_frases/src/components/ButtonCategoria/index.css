@@ -5,4 +5,6 @@
   border: 1px solid #1fa4db;
   border-radius: 6px;
   background-color: #fff;
+
+  cursor: pointer;
 }
