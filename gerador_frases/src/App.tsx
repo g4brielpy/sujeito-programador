@@ -8,9 +8,7 @@ import { frases } from "./db";
 
 function App() {
   const [indexCategoria, setIndexCategoria] = useState<number>(0);
-  const [fraseSelecionada, setFraseSelecionada] = useState<string>(
-    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non, tenetur! Eveniet impedit, aut repellendus"
-  );
+  const [fraseSelecionada, setFraseSelecionada] = useState<string>("");
   return (
     <>
       <main className="main-principal">
@@ -20,7 +18,15 @@ function App() {
             <h2>Categorias</h2>
             <div>
               {frases.map((item, index) => (
-                <ButtonCategoria key={item.id}>{item.nome}</ButtonCategoria>
+                <ButtonCategoria
+                  key={item.id}
+                  onClick={() => setIndexCategoria(index)}
+                  style={{
+                    borderWidth: index == indexCategoria ? "3px" : "0.5px",
+                  }}
+                >
+                  {item.nome}
+                </ButtonCategoria>
               ))}
             </div>
             <ButtonFrase>Gerar Frase</ButtonFrase>
