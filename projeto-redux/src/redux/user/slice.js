@@ -14,16 +14,14 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     createrUser: (state, action) => {
-      console.log(action);
+      const { name, email } = action.payload;
+      state.user.name = name;
+      state.user.email = email;
+    },
 
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          name: action.payload.name,
-          email: action.payload.email,
-        },
-      };
+    addAddress: (state, action) => {
+      const { newAddress } = action.action;
+      state.user.address = newAddress;
     },
   },
 });
