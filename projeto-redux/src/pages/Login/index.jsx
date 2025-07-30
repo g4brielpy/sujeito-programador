@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import { createrUser } from "../../redux/user/slice";
@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import styles from "./login.module.css";
 
 export function Login() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((rootReducers) => rootReducers.user);
 
@@ -17,12 +18,18 @@ export function Login() {
   function handleLogin(e) {
     e.preventDefault();
 
+    if (name.trim() == "" && email.trim() == "") {
+      alert("Nome ou Email inválido!");
+      return;
+    }
+
     dispatch(
       createrUser({
         name,
         email,
       })
     );
+    navigate("painel/");
   }
 
   return (
