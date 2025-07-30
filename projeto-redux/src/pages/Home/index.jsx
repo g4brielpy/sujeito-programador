@@ -7,7 +7,6 @@ import styles from "./home.module.css";
 
 export function Home() {
   const { user } = useSelector((rootReducers) => rootReducers.user);
-  console.log(user);
 
   function handleDeleteAddress() {
     alert("Endereço deletado com sucesso!");
@@ -31,16 +30,23 @@ export function Home() {
 
         <main className={styles.content}>
           <div className={styles.message}>
-            <h1 className={styles.title}>Olá {user.name}, bem vindo!</h1>
+            <h1 className={styles.title}>
+              Olá {user?.name ? user.name : "Visitante"}, bem vindo!
+            </h1>
+            {user?.email && <span>Email: {user.email}</span>}
 
-            <span>Email: {user.email}</span>
+            {user?.address && (
+              <>
+                <strong className={styles.addressLabel}>Endereço atual:</strong>
+                <div className={styles.address}>
+                  <p>Rua centro, n 123</p>
 
-            <strong className={styles.addressLabel}>Endereço atual:</strong>
-            <div className={styles.address}>
-              <p>Rua centro, n 123</p>
-
-              <button onClick={handleDeleteAddress}>Deletar endereço</button>
-            </div>
+                  <button onClick={handleDeleteAddress}>
+                    Deletar endereço
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </main>
       </div>
