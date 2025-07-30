@@ -10,16 +10,24 @@ export const userSlice = createSlice({
   reducers: {
     createrUser: (state, action) => {
       const { name, email } = action.payload;
-      state.user.name = name;
-      state.user.email = email;
+      state.user = {
+        name: name,
+        email: email,
+      };
     },
 
     addAddress: (state, action) => {
-      const { newAddress } = action.action;
-      state.user.address = newAddress;
+      const { addressName, addressNumber } = action.payload;
+      state.user = {
+        ...state.user,
+        address: {
+          name: addressName,
+          number: addressNumber,
+        },
+      };
     },
   },
 });
 
-export const { createrUser } = userSlice.actions;
+export const { createrUser, addAddress } = userSlice.actions;
 export default userSlice.reducer;
