@@ -16,6 +16,10 @@ export const userSlice = createSlice({
       };
     },
 
+    logoutUser: (state, action) => {
+      state.user = null;
+    },
+
     addAddress: (state, action) => {
       const { addressName, addressNumber } = action.payload;
       state.user = {
@@ -26,8 +30,16 @@ export const userSlice = createSlice({
         },
       };
     },
+
+    delAddress: (state, action) => {
+      state.user = {
+        ...state.user,
+        address: null,
+      };
+    },
   },
 });
 
-export const { createrUser, addAddress } = userSlice.actions;
+export const { createrUser, logoutUser, addAddress, delAddress } =
+  userSlice.actions;
 export default userSlice.reducer;

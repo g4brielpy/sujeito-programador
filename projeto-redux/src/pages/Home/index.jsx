@@ -2,13 +2,17 @@ import { Header } from "../../components/header";
 import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
+import { delAddress } from "../../redux/user/slice";
+import { useDispatch } from "react-redux";
 
 import styles from "./home.module.css";
 
 export function Home() {
+  const dispatch = useDispatch();
   const { user } = useSelector((rootReducers) => rootReducers.user);
 
   function handleDeleteAddress() {
+    dispatch(delAddress());
     alert("Endereço deletado com sucesso!");
   }
 
