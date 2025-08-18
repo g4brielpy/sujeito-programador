@@ -54,6 +54,16 @@ export function Home() {
               </>
             )}
           </div>
+
+          <hr />
+
+          <div className={styles.message}>
+            <h1 className={styles.title}>Lista de Usuários</h1>
+
+            <strong className={styles.addressLabel}>
+              <button className={styles.link}>Busca usuários</button>
+            </strong>
+          </div>
         </main>
       </div>
     </>
