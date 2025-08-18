@@ -54,9 +54,8 @@ export function Home() {
               </>
             )}
           </div>
-
+          se
           <hr />
-
           <div className={styles.message}>
             <h1 className={styles.title}>Lista de Usuários</h1>
 
