@@ -39,7 +39,7 @@ export const userSlice = createSlice({
       };
     },
 
-    fetchUsers: (state, action) => {
+    fetchUsers: () => {
       alert("Fetch users");
     },
   },
