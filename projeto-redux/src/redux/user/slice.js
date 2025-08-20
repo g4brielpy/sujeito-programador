@@ -39,9 +39,7 @@ export const userSlice = createSlice({
       };
     },
 
-    fetchUsers: () => {
-      alert("Fetch users");
-    },
+    fetchUsers: (state) => {},
   },
 });
 
