@@ -1,10 +1,12 @@
 import { fetchUsers, fetchUsersSuccess, fetchUsersFailure } from "./slice";
-import { takeLatest, call, put } from "redux-saga/effects";
+import { takeLatest, call, put, delay } from "redux-saga/effects";
 
 // URL API: https://jsonplaceholder.typicode.com/users
 
 function* fetchUsersSaga() {
   try {
+    yield delay(2000);
+
     const response = yield call(
       fetch,
       "https://jsonplaceholder.typicode.com/users"

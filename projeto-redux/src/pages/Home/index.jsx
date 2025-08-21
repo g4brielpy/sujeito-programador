@@ -68,8 +68,12 @@ export function Home() {
             <h1 className={styles.title}>Lista de Usuários</h1>
 
             <strong className={styles.addressLabel}>
-              <button onClick={handleFetchUsers} className={styles.link}>
-                Busca usuários
+              <button
+                onClick={handleFetchUsers}
+                className={styles.link}
+                disabled={loading}
+              >
+                {loading ? "Carregando..." : "Busca usuários"}
               </button>
             </strong>
 

@@ -49,8 +49,8 @@ export const userSlice = createSlice({
       state.users = action.payload;
     },
     fetchUsersFailure: (state, action) => {
-      state.loading = true;
-      console.log(action.payload);
+      state.loading = false;
+      console.error(action.payload);
     },
   },
 });
