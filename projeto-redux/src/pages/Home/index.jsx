@@ -9,7 +9,9 @@ import styles from "./home.module.css";
 
 export function Home() {
   const dispatch = useDispatch();
-  const { user } = useSelector((rootReducers) => rootReducers.user);
+  const { user, users, loading } = useSelector(
+    (rootReducers) => rootReducers.user
+  );
 
   function handleDeleteAddress() {
     dispatch(delAddress());
@@ -17,6 +19,8 @@ export function Home() {
   }
 
   function handleFetchUsers() {
+    console.log("Clicou no Fetch");
+
     dispatch(fetchUsers());
   }
 
@@ -51,7 +55,7 @@ export function Home() {
                     {user.address.name}, N° {user.address.number}
                   </p>
 
-                  <button onClick={handleDeleteAddress}>
+                  <button onClick={handleDeleteAddress} disabled={loading}>
                     Deletar endereço
                   </button>
                 </div>
@@ -68,6 +72,23 @@ export function Home() {
                 Busca usuários
               </button>
             </strong>
+
+            {users.length > 0 && (
+              <section
+                style={{
+                  marginTop: "28px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "18px",
+                }}
+              >
+                {users.map((user) => (
+                  <p key={user.id}>
+                    {user.id} | {user.name}
+                  </p>
+                ))}
+              </section>
+            )}
           </div>
         </main>
       </div>
