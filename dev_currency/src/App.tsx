@@ -1,11 +1,6 @@
-// import { useState } from "react";
+import { RouterProvider } from "react-router";
+import { router } from "./router";
 
-function App() {
-  return (
-    <>
-      <h1>APP</h1>
-    </>
-  );
+export default function App() {
+  return <RouterProvider router={router} />;
 }
-
-export default App;
