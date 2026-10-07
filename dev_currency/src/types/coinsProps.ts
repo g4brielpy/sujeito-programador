@@ -1,4 +1,4 @@
-export interface AssetsProps {
+export interface CoinsProps {
   id: string;
   rank: string;
   symbol: string;
