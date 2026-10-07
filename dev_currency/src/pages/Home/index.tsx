@@ -1,7 +1,9 @@
-// import React from "react";
+// import { useEffect, useState } from "react";
 import { InputSearch } from "../../components/InputSearch";
+import { useFetchAssets } from "../../hooks/useFetchAssets";
 
 export default function Home() {
+  useFetchAssets();
   return (
     <main>
       <form className="flex gap-x-8">
