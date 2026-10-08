@@ -28,5 +28,5 @@ export function useFetchAssets() {
     })();
   }, []);
 
-  console.log(dataCoins);
+  return { dataCoins };
 }
