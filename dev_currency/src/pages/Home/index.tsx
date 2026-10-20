@@ -9,7 +9,7 @@ import { type CoinsProps } from "../../types/CoinsProps";
 import { formatCurrency } from "../../utils/formatCurrency";
 
 export default function Home() {
-  const { dataCoins } = useFetchAssets();
+  const { dataCoins, setOffSetCoins } = useFetchAssets();
 
   return (
     <main className="container mx-auto p-6">
@@ -68,6 +68,13 @@ export default function Home() {
           </tbody>
         </table>
       </section>
+      <button
+        type="button"
+        onClick={() => setOffSetCoins((prev) => prev + 10)}
+        className="rounded-lg bg-cyan-500 px-6 py-3 font-semibold text-primary transition-colors hover:bg-cyan-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500"
+      >
+        Ver Mais
+      </button>
     </main>
   );
 }
