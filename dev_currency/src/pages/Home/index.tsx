@@ -41,7 +41,9 @@ export default function Home() {
                   <div className="flex justify-center items-center">
                     <Link to={`detail/${coin.id}`}>
                       <div className="w-40 flex items-center gap-4">
-                        <p>ICO</p>
+                        <div className="w-7 h-7 shrink-0 bg-white rounded-full">
+                          {/* Logo da criptomoeda */}
+                        </div>
                         <span>
                           {coin.name} | {coin.symbol}
                         </span>
