@@ -6,6 +6,8 @@ import { useFetchAssets } from "../../hooks/useFetchAssets";
 
 import { type CoinsProps } from "../../types/CoinsProps";
 
+import { formatCurrency } from "../../utils/formatCurrency";
+
 export default function Home() {
   const { dataCoins } = useFetchAssets();
 
@@ -47,9 +49,9 @@ export default function Home() {
                     </Link>
                   </div>
                 </td>
-                <td>{coin.marketCapUsd}</td>
-                <td>{coin.priceUsd}</td>
-                <td>{coin.volumeUsd24Hr}</td>
+                <td>{formatCurrency(coin.marketCapUsd)}</td>
+                <td>{formatCurrency(coin.priceUsd, "standard")}</td>
+                <td>{formatCurrency(coin.volumeUsd24Hr, "compact", 0)}</td>
                 <td
                   className={
                     Number(coin.changePercent24Hr) > 0
