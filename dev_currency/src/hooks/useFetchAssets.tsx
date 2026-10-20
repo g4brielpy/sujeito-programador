@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import axios from "axios";
 import { apiCoincap } from "../API/coincap";
 
 import { type AxiosResponse } from "axios";
@@ -6,27 +7,35 @@ import { type CoinsProps } from "../types/CoinsProps";
 
 export function useFetchAssets() {
   const [dataCoins, setDataCoins] = useState<CoinsProps[]>([]);
+  const [offSetCoins, setOffSetCoins] = useState<number>(0);
 
   const limitCoins = useRef<number>(10);
-  const offSetCoins = useRef<number>(0);
 
   useEffect(() => {
-    (async () => {
+    const controller = new AbortController();
+
+    async function fetchAssets() {
       try {
         const response: AxiosResponse<{ data: CoinsProps[] }> =
           await apiCoincap.get("/assets", {
             params: {
               limit: limitCoins.current,
-              offset: offSetCoins.current,
+              offset: offSetCoins,
             },
+            signal: controller.signal,
           });
 
-        setDataCoins(response.data.data);
-      } catch {
-        throw Error("Erro na API");
+        setDataCoins((prevCoins) => [...prevCoins, ...response.data.data]);
+      } catch (error) {
+        if (axios.isCancel(error)) return;
+        throw error;
       }
-    })();
-  }, []);
+    }
 
-  return { dataCoins };
+    fetchAssets();
+
+    return () => controller.abort();
+  }, [offSetCoins]);
+
+  return { dataCoins, setOffSetCoins };
 }
