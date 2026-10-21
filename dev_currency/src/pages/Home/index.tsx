@@ -42,6 +42,9 @@ export default function Home() {
                     <Link to={`detail/${coin.id}`}>
                       <div className="w-40 flex items-center gap-4">
                         <div className="w-7 h-7 shrink-0 bg-white rounded-full">
+                          <img
+                            src={`https://assets.coincap.io/assets/icons/${coin.symbol.toLowerCase().trim()}2@2x.png`}
+                          />
                           {/* Logo da criptomoeda */}
                         </div>
                         <span>
