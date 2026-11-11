@@ -1,7 +1,19 @@
-// import React from "react";
 import { Link } from "react-router";
 
+import { useSelector } from "react-redux";
+import { type storeState } from "../../context/store";
+
 export default function Painel() {
+  interface userProps {
+    name: string;
+    email: string;
+    endereco: string;
+  }
+
+  const user = useSelector<storeState, userProps>(
+    (stateRoot) => stateRoot.user.user,
+  );
+
   return (
     <main className="min-h-dvh bg-slate-950 px-4 py-12">
       <div className="mx-auto w-full max-w-4xl">
@@ -36,7 +48,7 @@ export default function Painel() {
               Área do usuário
             </p>
             <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-              Olá [nome], bem-vindo!
+              Olá {user ? user.name : ""}, bem-vindo!
             </h1>
             <p className="mt-2 text-slate-600">
               Confira suas informações cadastradas.
@@ -47,13 +59,13 @@ export default function Painel() {
             <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
               <h2 className="text-sm font-medium text-slate-500">E-mail</h2>
               <p className="mt-2 wrap-break font-semibold text-slate-900">
-                [email]
+                {user.email}
               </p>
             </div>
             <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
               <h2 className="text-sm font-medium text-slate-500">Endereço</h2>
               <p className="mt-2 wrap-break font-semibold text-slate-900">
-                [endereço]
+                {user.endereco}
               </p>
             </div>
           </div>
