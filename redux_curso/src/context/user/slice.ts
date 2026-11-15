@@ -23,5 +23,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { login } = userSlice.actions;
+export const { login, setEndereco } = userSlice.actions;
 export default userSlice.reducer;

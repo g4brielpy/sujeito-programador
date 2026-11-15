@@ -1,6 +1,24 @@
+import { useState } from "react";
 import { Link } from "react-router";
 
+import { useSelector, useDispatch } from "react-redux";
+import { type storeState } from "../../context/store";
+import { setEndereco } from "../../context/user/slice";
+
 export default function Endereco() {
+  const dispatch = useDispatch();
+  const { endereco } = useSelector((state: storeState) => state.user["user"]);
+
+  const [enderecoInput, setEnderecoInput] = useState(endereco);
+
+  function handleSubmitEndereco(
+    event: React.SubmitEvent<HTMLFormElement>,
+  ): void {
+    event.preventDefault();
+
+    dispatch(setEndereco(enderecoInput));
+  }
+
   return (
     <main className="min-h-dvh bg-slate-950 px-4 py-12">
       <div className="mx-auto w-full max-w-4xl">
@@ -42,7 +60,10 @@ export default function Endereco() {
             </p>
           </header>
 
-          <form className="space-y-5">
+          <form
+            className="space-y-5"
+            onSubmit={(event) => handleSubmitEndereco(event)}
+          >
             <div>
               <label
                 htmlFor="endereco"
@@ -52,6 +73,8 @@ export default function Endereco() {
               </label>
               <input
                 type="text"
+                value={enderecoInput}
+                onChange={(event) => setEnderecoInput(event.target.value)}
                 name="endereco"
                 id="endereco"
                 placeholder="Digite seu endereço"
