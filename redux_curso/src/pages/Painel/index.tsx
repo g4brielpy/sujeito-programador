@@ -1,18 +1,24 @@
 import { Link } from "react-router";
 
-import { useSelector } from "react-redux";
-import { type storeState } from "../../context/store";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUsersRequest } from "../../context/user/slice";
+
+import type { storeState } from "../../context/store";
+import type { userProps, UsersProps } from "../../context/user/slice";
 
 export default function Painel() {
-  interface userProps {
-    name: string;
-    email: string;
-    endereco: string;
-  }
+  const dispatch = useDispatch();
 
   const user = useSelector<storeState, userProps>(
     (stateRoot) => stateRoot.user.user,
   );
+  const users = useSelector<storeState, UsersProps[]>(
+    (stateRoot) => stateRoot.user.users,
+  );
+
+  function handleUser() {
+    dispatch(fetchUsersRequest());
+  }
 
   return (
     <main className="min-h-dvh bg-slate-950 px-4 py-12">
@@ -42,7 +48,7 @@ export default function Painel() {
           </Link>
         </nav>
 
-        <section className="rounded-2xl border border-slate-200 bg-white p-8 shadow-2xl shadow-black/20 sm:p-10">
+        <section className="rounded-2xl border border-slate-200 bg-white p-8 shadow-2xl shadow-black/20 sm:p-10 mb-6">
           <header className="mb-8">
             <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600">
               Área do usuário
@@ -69,6 +75,31 @@ export default function Painel() {
               </p>
             </div>
           </div>
+        </section>
+        <section className="rounded-2xl border border-slate-200 bg-white p-8 shadow-2xl shadow-black/20 sm:p-10">
+          <h2 className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600">
+            Usuários do sistema
+          </h2>
+
+          <button
+            onClick={handleUser}
+            className="my-6 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/30"
+          >
+            Buscar Usuários
+          </button>
+
+          {users.length > 0 && (
+            <>
+              <p className="mb-8 text-slate-600">Resultado:</p>
+              <ul className="rounded-2xl border border-slate-200 p-4 space-y-4">
+                {users.map((item) => (
+                  <li key={item.id}>
+                    {item.id}. {item.name}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </section>
       </div>
     </main>
