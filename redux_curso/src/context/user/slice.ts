@@ -20,8 +20,10 @@ const userSlice = createSlice({
     setEndereco(state, action: PayloadAction<string>) {
       state.user.endereco = action.payload;
     },
+
+    fetchUsersRequest() {},
   },
 });
 
-export const { login, setEndereco } = userSlice.actions;
+export const { login, setEndereco, fetchUsersRequest } = userSlice.actions;
 export default userSlice.reducer;
